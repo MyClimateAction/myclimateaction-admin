@@ -33,4 +33,4 @@ workflows:
               only: master
       - deploy:
           requires:
-            - build
+            - install-build
