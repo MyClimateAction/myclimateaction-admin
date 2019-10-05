@@ -2,6 +2,7 @@
   "name": "myclimateaction-admin",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://myclimateaction.github.io/myclimateaction-admin",
   "dependencies": {
     "gh-pages": "^2.1.1",
     "react": "^16.10.2",
