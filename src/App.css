@@ -1,22 +1,43 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
 .App {
   text-align: center;
+  background: #f9f9f9;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Content {
+  background-color: white;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: grey;
 }
 
-.App-link {
-  color: #09d3ac;
+/* TOPBAR */
+.TopBar-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.TopBar-item {
+  margin: auto; /* Magic! */
+}
+
+/* TABLE */
+.Actions-List {
+  border-collapse: collapse;
+}
+.Actions-tr td {
+  color: black;
+  background-color: white;
+}
+
+.Actions-row td {
+  border: 1px solid #ddd;
+  color: black;
+  background: #f9f9f9;
 }
