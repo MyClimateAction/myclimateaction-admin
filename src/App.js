@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import AuthToken from "./Components/AuthToken";
+// import AuthToken from "./Components/AuthToken";
 import TopBar from "./Components/TopBar";
 import Table from "./Components/Table/Table";
 
