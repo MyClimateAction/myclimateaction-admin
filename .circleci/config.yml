@@ -24,7 +24,14 @@ jobs:
             - "61:d1:6c:98:ed:f4:60:d7:ca:20:65:4f:b5:b9:79:36"
       - attach_workspace:
           at: .
-      - run: mkdir ~/.ssh && touch ~/.ssh/config && echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+      - run:
+        name: Prepare Github informations
+        command: |
+          mkdir ~/.ssh
+          touch ~/.ssh/config
+          echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+          git config user.email "ci-build@myclimateaction.com"
+          git config user.name "ci-build"
       - run: yarn deploy
 
 workflows:
