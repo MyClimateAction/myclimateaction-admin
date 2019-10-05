@@ -1,0 +1,33 @@
+defaults: &defaults
+  docker:
+    - image: circleci/node:latest
+
+version: 2
+jobs:
+  install-build:
+    <<: *defaults
+    steps:
+      - checkout
+      - run: npm install -g yarn
+      - run: yarn
+      - run: yarn build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./*
+
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run: yarn deploy
+
+workflows:
+  version: 2
+  release_branches:
+    jobs:
+      - install-build
+      - deploy:
+          requires:
+            - build
