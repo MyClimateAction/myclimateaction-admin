@@ -24,7 +24,7 @@ jobs:
             - "61:d1:6c:98:ed:f4:60:d7:ca:20:65:4f:b5:b9:79:36"
       - attach_workspace:
           at: .
-      - run: touch ~/.ssh/config && echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+      - run: mkdir ~/.ssh && touch ~/.ssh/config && echo "  StrictHostKeyChecking no" >> ~/.ssh/config
       - run: yarn deploy
 
 workflows:
