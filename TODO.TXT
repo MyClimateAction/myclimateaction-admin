@@ -3,5 +3,3 @@
 [] Change the auth, use token info from the server
 [] Add logout function
 [] Refactor css to match with etablished design.
-
-
