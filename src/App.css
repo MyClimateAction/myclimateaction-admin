@@ -14,30 +14,3 @@
   justify-content: center;
   color: grey;
 }
-
-/* TOPBAR */
-.TopBar-container {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
-}
-
-.TopBar-item {
-  margin: auto; /* Magic! */
-}
-
-/* TABLE */
-.Actions-List {
-  border-collapse: collapse;
-}
-.Actions-tr td {
-  color: black;
-  background-color: white;
-}
-
-.Actions-row td {
-  border: 1px solid #ddd;
-  color: black;
-  background: #f9f9f9;
-}

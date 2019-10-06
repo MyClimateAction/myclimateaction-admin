@@ -1,0 +1,8 @@
+/* TABLE */
+.Actions-List {
+  border-collapse: collapse;
+}
+.Actions-tr td {
+  color: black;
+  background-color: white;
+}

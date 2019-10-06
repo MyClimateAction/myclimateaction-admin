@@ -21,7 +21,6 @@ export default class App extends Component {
   }
 
   checkAuth = token => {
-    //!!!!!! change "token" with real token
     let isValid = token === "MyClimateActionAdmin2019!" ? true : false;
     this.setState({ auth: isValid });
     this.fetchData();
@@ -53,6 +52,10 @@ export default class App extends Component {
       .catch(error => {
         console.log("Error fetching and parsing data.", error);
       });
+  };
+
+  fetchAuth = () => {
+    fetch(`http://${process.env.REACT_APP_API_URL}/auth`);
   };
 
   // ---------------- HANDLE FUNCTIONS ----------------

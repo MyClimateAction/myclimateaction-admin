@@ -1,0 +1,11 @@
+/* TOPBAR */
+.TopBar-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.TopBar-item {
+  margin: auto; /* Magic! */
+}
