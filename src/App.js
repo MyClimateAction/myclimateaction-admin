@@ -9,18 +9,17 @@ export default class App extends Component {
     super();
     this.state = {
       actions: [],
+      token: "",
       loading: false,
       auth: false
     };
   }
 
-  componentDidMount() {
-    if (this.checkAuth()) {
-      this.fetchData();
-    }
-  }
+  componentDidMount() {}
 
   checkAuth = token => {
+    const auth = this.fetchAuth();
+
     let isValid = token === "MyClimateActionAdmin2019!" ? true : false;
     this.setState({ auth: isValid });
     this.fetchData();
@@ -30,18 +29,7 @@ export default class App extends Component {
   };
 
   fetchData = () => {
-    fetch(
-      `http://${process.env.REACT_APP_API_URL}/actions`
-      //, {
-      // headers: {
-      //   authorization: token
-      // },
-      // method: 'POST',
-      // body: {
-      //   title: "", frequency: "", picture_url: ""
-      // }
-      //}
-    )
+    fetch(`http://${process.env.REACT_APP_API_URL}/actions`)
       .then(response => response.json())
       .then(responseData => {
         this.setState({
@@ -55,7 +43,55 @@ export default class App extends Component {
   };
 
   fetchAuth = () => {
-    fetch(`http://${process.env.REACT_APP_API_URL}/auth`);
+    return fetch(`http://${process.env.REACT_APP_API_URL}/auth`, {
+      headers: {
+        authorization: "MyClimateAcAdmin2019!" //from state
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+
+  postAction = () => {
+    return fetch(`http://${process.env.REACT_APP_API_URL}/action`, {
+      headers: {
+        "Content-type": "application/json",
+        authorization: "MyClimateActionAdmin2019!" //from state
+      },
+      method: "POST",
+      body: JSON.stringify({
+        title: "hello new action",
+        frequency: "daily",
+        picture_url: "http://123.com"
+      })
+    })
+      .then(res => {
+        return res.json();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+
+  deleteAction = () => {
+    const actionId = "0df98ee0-e874-11e9-80d7-23da03bd241e";
+    return fetch(`http://${process.env.REACT_APP_API_URL}/action/${actionId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        authorization: "MyClimateActionAdmin2019!" //from state
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .catch(err => {
+        console.error(err);
+      });
   };
 
   // ---------------- HANDLE FUNCTIONS ----------------

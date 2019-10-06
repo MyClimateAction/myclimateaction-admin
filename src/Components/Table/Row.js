@@ -25,6 +25,8 @@ export default class Row extends Component {
     this.setState(prevState => ({
       isEdit: !prevState.isEdit
     }));
+
+    this.props.onComplete({ ...this.state });
   };
 
   handleUpdateValue = e => {
