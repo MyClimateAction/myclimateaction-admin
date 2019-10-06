@@ -29,7 +29,15 @@ export default class App extends Component {
   };
 
   fetchData = () => {
-    fetch("http://51.145.16.252/actions")
+    fetch("http://51.145.16.252/actions", {
+      // headers: {
+      //   authorization: token
+      // },
+      // method: 'POST',
+      // body: {
+      //   title: "", frequency: "", picture_url: ""
+      // }
+    })
       .then(response => response.json())
       .then(responseData => {
         this.setState({
