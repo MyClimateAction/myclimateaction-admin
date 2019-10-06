@@ -60,12 +60,9 @@ export default class App extends Component {
 
   // ---------------- HANDLE FUNCTIONS ----------------
   handleLogout = () => {
-    console.log("logout");
-    this.setState(prevState => {
-      return {
-        actions: [],
-        auth: false
-      };
+    this.setState({
+      actions: [],
+      auth: false
     });
   };
 

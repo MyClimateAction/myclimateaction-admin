@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import style from "./AuthToken.css";
 
 export default class AuthToken extends Component {
   state = {
@@ -16,14 +17,15 @@ export default class AuthToken extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>My climate action admin</label>
+      <form className="Auth-container" onSubmit={this.handleSubmit}>
+        <label className="Auth-item">My climate action admin</label>
         <input
+          className="Auth-item"
           onChange={this.onTypeChange}
           type="password"
           placeholder="Enter auth token"
         />
-        <button type="submit" id="submit">
+        <button className="Auth-item" type="submit" id="submit">
           Access
         </button>
       </form>
