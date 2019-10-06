@@ -32,7 +32,7 @@ export default class App extends Component {
   };
 
   fetchData = () => {
-    fetch("http://51.145.16.252/actions", {
+    fetch(`${process.env.API_URL}/actions`, {
       // headers: {
       //   authorization: token
       // },
