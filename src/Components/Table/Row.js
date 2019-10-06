@@ -22,21 +22,17 @@ export default class Row extends Component {
   }
 
   handleEdit = () => {
-    this.setState({
-      isEdit: true
-    });
+    this.setState(prevState => ({
+      isEdit: !prevState.isEdit
+    }));
   };
 
-  handleDone = e => {
-    const newName = e.target.name;
-    const newPicture_url = e.target.picture_url;
-    const newFrequency = e.target.frequency;
+  handleUpdateValue = e => {
+    const value = e.target.value;
+    const stateName = e.target.name;
 
     this.setState({
-      isEdit: false,
-      name: newName,
-      picture_url: newPicture_url,
-      frequency: newFrequency
+      [stateName]: value
     });
   };
 
@@ -50,38 +46,41 @@ export default class Row extends Component {
                 type="text"
                 name="name"
                 value={this.state.name}
-                onChange={this.handleDone}
+                onChange={this.handleUpdateValue}
               />
             </td>
             <td className="rowTd">
-              <input
-                type="text"
+              <select
                 name="frequency"
                 value={this.state.frequency}
-                onChange={this.handleDone}
-              />
+                onChange={this.handleUpdateValue}
+              >
+                <option value="Daily">Daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
+              </select>
             </td>
             <td className="rowTd">
               <input
                 type="text"
                 name="picture_url"
                 value={this.state.picture_url}
-                onChange={this.handleDone}
+                onChange={this.handleUpdateValue}
               />
             </td>
             <td className="rowTd">{this.props.votes}</td>
             <td className="rowTd">
-              <button onClick={this.handleDone}>Done</button>
+              <button onClick={this.handleEdit}>Done</button>
             </td>
           </React.Fragment>
         )}
 
         {!this.state.isEdit && (
           <React.Fragment>
-            <td className="rowTd">{this.props.name}</td>
-            <td className="rowTd">{this.props.frequency}</td>
-            <td className="rowTd">{this.props.picture_url}</td>
-            <td className="rowTd">{this.props.votes}</td>
+            <td className="rowTd">{this.state.name}</td>
+            <td className="rowTd">{this.state.frequency}</td>
+            <td className="rowTd">{this.state.picture_url}</td>
+            <td className="rowTd">{this.state.votes}</td>
             <td>
               <button onClick={this.handleEdit}>Edit</button>
             </td>
