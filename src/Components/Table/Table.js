@@ -19,10 +19,9 @@ export default class Table extends Component {
           key={action.id}
           id={action.id}
           name={action.title}
-          freq={action.frequency}
-          image={action.picture_url}
+          frequency={action.frequency}
+          picture_url={action.picture_url}
           votes={10}
-          action={"Edit"}
         />
       ));
     } else {
