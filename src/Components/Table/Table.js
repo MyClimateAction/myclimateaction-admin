@@ -5,30 +5,12 @@ export default class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      actions: [
-        {
-          id: 0,
-          name: "Vegan",
-          frequency: "Daily", //should be an enum
-          image: "url",
-          votes: "100",
-          action: "Edit" //should be an enum}
-        },
-        {
-          id: 1,
-          name: "Walk",
-          frequency: "Daily", //should be an enum
-          image: "url",
-          votes: "50",
-          action: "Edit" //should be an enum}
-        }
-      ]
+      actions: []
     };
   }
 
   returnTableData = () => {
     const results = this.props.data;
-    console.log(results);
     let actions;
     if (results.length) {
       actions = results.map(action => (

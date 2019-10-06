@@ -2,8 +2,7 @@ import React, { Component } from "react";
 
 export default class AuthToken extends Component {
   state = {
-    tokenString: "",
-    isTokenValid: false
+    tokenString: ""
   };
 
   onTypeChange = e => {
@@ -19,7 +18,11 @@ export default class AuthToken extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>My climate action admin</label>
-        <input onChange={this.onTypeChange} placeholder="Enter auth token" />
+        <input
+          onChange={this.onTypeChange}
+          type="password"
+          placeholder="Enter auth token"
+        />
         <button type="submit" id="submit">
           Access
         </button>

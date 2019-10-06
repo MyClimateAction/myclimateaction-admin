@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-// import AuthToken from "./Components/AuthToken";
+import AuthToken from "./Components/AuthToken";
 import TopBar from "./Components/TopBar";
 import Table from "./Components/Table/Table";
 
@@ -9,7 +9,7 @@ export default class App extends Component {
     super();
     this.state = {
       actions: [],
-      loading: true,
+      loading: false,
       auth: false
     };
   }
@@ -22,17 +22,18 @@ export default class App extends Component {
 
   checkAuth = token => {
     //!!!!!! change "token" with real token
-    let isValid = token === "token" ? true : false;
-    console.log("Token: " + isValid);
-    this.setState({ auth: true }); //to change
-    return true;
+    let isValid = token === "MyClimateActionAdmin2019!" ? true : false;
+    this.setState({ auth: isValid });
+    this.fetchData();
     // process.env.NODE_ENV development | production
     // localStorage.set('token', token)
     // localStorage.getItem('token')
   };
 
   fetchData = () => {
-    fetch(`${process.env.API_URL}/actions`, {
+    fetch(
+      `http://${process.env.REACT_APP_API_URL}/actions`
+      //, {
       // headers: {
       //   authorization: token
       // },
@@ -40,7 +41,8 @@ export default class App extends Component {
       // body: {
       //   title: "", frequency: "", picture_url: ""
       // }
-    })
+      //}
+    )
       .then(response => response.json())
       .then(responseData => {
         this.setState({
@@ -54,6 +56,16 @@ export default class App extends Component {
   };
 
   // ---------------- HANDLE FUNCTIONS ----------------
+  handleLogout = () => {
+    console.log("logout");
+    this.setState(prevState => {
+      return {
+        actions: [],
+        auth: false
+      };
+    });
+  };
+
   handleModifyAction = id => {
     this.setState(prevState => {
       return {
@@ -91,19 +103,24 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <div className="Content">
-          { {<AuthToken onAccess={this.checkAuth} />} }
-        </div> */}
-
-        <TopBar />
-        <div className="Content">
-          <h2>Manage actions</h2>
-          {this.state.loading ? (
-            <p>Loading...</p>
-          ) : (
-            <Table data={this.state.actions} />
-          )}
-        </div>
+        {!this.state.auth && (
+          <div className="Content">
+            {<AuthToken onAccess={this.checkAuth} />}
+          </div>
+        )}
+        {this.state.auth && (
+          <React.Fragment>
+            <TopBar logout={this.handleLogout} />
+            <div className="Content">
+              <h2>Manage actions</h2>
+              {this.state.loading ? (
+                <p>Loading...</p>
+              ) : (
+                <Table data={this.state.actions} />
+              )}
+            </div>
+          </React.Fragment>
+        )}
       </div>
     );
   }
