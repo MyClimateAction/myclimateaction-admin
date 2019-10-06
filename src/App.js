@@ -26,6 +26,9 @@ export default class App extends Component {
     console.log("Token: " + isValid);
     this.setState({ auth: true }); //to change
     return true;
+    // process.env.NODE_ENV development | production
+    // localStorage.set('token', token)
+    // localStorage.getItem('token')
   };
 
   fetchData = () => {
