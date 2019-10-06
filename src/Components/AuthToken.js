@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import style from "./AuthToken.css";
+import "./AuthToken.css";
 
 export default class AuthToken extends Component {
   state = {

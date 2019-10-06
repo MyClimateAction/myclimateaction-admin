@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Row from "./Row";
-import style from "./Table.css";
+import "./Table.css";
 
 export default class Table extends Component {
   constructor(props) {
