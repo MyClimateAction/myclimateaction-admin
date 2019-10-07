@@ -10,6 +10,8 @@ jobs:
       - checkout
       - run: sudo npm install -g yarn
       - run: yarn
+      - run: echo "REACT_APP_API_URL=${REACT_APP_API_URL}" > .env
+      - run: cat .env
       - run: yarn build
       - persist_to_workspace:
           root: .
