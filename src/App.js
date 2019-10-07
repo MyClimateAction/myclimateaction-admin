@@ -18,7 +18,7 @@ export default class App extends Component {
   componentDidMount() {}
 
   checkAuth = token => {
-    const auth = this.fetchAuth();
+    this.fetchAuth();
 
     let isValid = token === "MyClimateActionAdmin2019!" ? true : false;
     this.setState({ auth: isValid });
