@@ -29,7 +29,7 @@ export default class App extends Component {
   };
 
   fetchData = () => {
-    fetch(`http://${process.env.REACT_APP_API_URL}/actions`)
+    fetch(`${process.env.REACT_APP_API_URL}/actions`)
       .then(response => response.json())
       .then(responseData => {
         this.setState({
@@ -43,7 +43,7 @@ export default class App extends Component {
   };
 
   fetchAuth = () => {
-    return fetch(`http://${process.env.REACT_APP_API_URL}/auth`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/auth`, {
       headers: {
         authorization: "MyClimateAcAdmin2019!" //from state
       }
@@ -57,7 +57,7 @@ export default class App extends Component {
   };
 
   postAction = () => {
-    return fetch(`http://${process.env.REACT_APP_API_URL}/action`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/action`, {
       headers: {
         "Content-type": "application/json",
         authorization: "MyClimateActionAdmin2019!" //from state
@@ -79,7 +79,7 @@ export default class App extends Component {
 
   deleteAction = () => {
     const actionId = "0df98ee0-e874-11e9-80d7-23da03bd241e";
-    return fetch(`http://${process.env.REACT_APP_API_URL}/action/${actionId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/action/${actionId}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
