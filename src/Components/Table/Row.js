@@ -25,8 +25,16 @@ export default class Row extends Component {
     this.setState(prevState => ({
       isEdit: !prevState.isEdit
     }));
+  };
 
-    this.props.onComplete({ ...this.state });
+  modifyAction = (id, name, picture_url, frequency) => {
+    let data = {
+      name: name,
+      picture_url: picture_url,
+      frequency: frequency
+    };
+    this.props.modifyAction(id, data);
+    this.handleEdit();
   };
 
   handleUpdateValue = e => {
@@ -72,7 +80,18 @@ export default class Row extends Component {
             </td>
             <td className="rowTd">{this.props.votes}</td>
             <td className="rowTd">
-              <button onClick={this.handleEdit}>Done</button>
+              <button
+                onClick={() =>
+                  this.modifyAction(
+                    this.props.id,
+                    this.props.name,
+                    this.props.picture_url,
+                    this.props.frequency
+                  )
+                }
+              >
+                Done
+              </button>
             </td>
           </React.Fragment>
         )}
@@ -83,8 +102,13 @@ export default class Row extends Component {
             <td className="rowTd">{this.state.frequency}</td>
             <td className="rowTd">{this.state.picture_url}</td>
             <td className="rowTd">{this.state.votes}</td>
-            <td>
+            <td className="rowTd">
               <button onClick={this.handleEdit}>Edit</button>
+            </td>
+            <td className="rowTd">
+              <button onClick={() => this.props.deleteAction(this.props.id)}>
+                X
+              </button>
             </td>
           </React.Fragment>
         )}

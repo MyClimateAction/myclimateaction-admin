@@ -77,9 +77,8 @@ export default class App extends Component {
       });
   };
 
-  deleteAction = () => {
-    const actionId = "0df98ee0-e874-11e9-80d7-23da03bd241e";
-    return fetch(`${process.env.REACT_APP_API_URL}/action/${actionId}`, {
+  deleteAction = actionID => {
+    return fetch(`${process.env.REACT_APP_API_URL}/action/${actionID}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -102,15 +101,6 @@ export default class App extends Component {
     });
   };
 
-  handleModifyAction = id => {
-    this.setState(prevState => {
-      return {
-        //no idea yet to modify
-        actions: prevState
-      };
-    });
-  };
-
   handleAddAction = (title, imageURL, freq) => {
     this.setState(prevState => {
       return {
@@ -118,6 +108,29 @@ export default class App extends Component {
           ...prevState.actions,
           this.createActionObject(title, imageURL, freq)
         ]
+      };
+    });
+  };
+
+  handleModifyAction = (id, data) => {
+    let modifyActions;
+    this.setState(prevState => {
+      modifyActions = prevState.actions;
+      if (modifyActions.id === id) {
+        modifyActions.name = data.name;
+        modifyActions.picture_url = data.picture_url;
+        modifyActions.frequency = data.frequency;
+      }
+    });
+    return {
+      actions: modifyActions
+    };
+  };
+
+  handleDeleteAction = id => {
+    this.setState(prevState => {
+      return {
+        actions: prevState.actions.filter(a => a.id !== id)
       };
     });
   };
@@ -152,7 +165,11 @@ export default class App extends Component {
               {this.state.loading ? (
                 <p>Loading...</p>
               ) : (
-                <Table data={this.state.actions} />
+                <Table
+                  data={this.state.actions}
+                  modifyAction={this.handleModifyAction}
+                  deleteAction={this.handleDeleteAction}
+                />
               )}
             </div>
           </React.Fragment>

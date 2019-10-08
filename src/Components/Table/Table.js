@@ -22,21 +22,28 @@ export default class Table extends Component {
           frequency={action.frequency}
           picture_url={action.picture_url}
           votes={10}
+          modifyAction={this.props.modifyAction}
+          deleteAction={this.props.deleteAction}
         />
       ));
     } else {
-      actions = <p>No data</p>;
+      actions = (
+        <tr>
+          <td>No data</td>
+        </tr>
+      );
     }
 
     return (
       <table className="Actions-List">
         <thead>
           <tr className="Actions-tr">
-            <td>Name</td>
-            <td>Frequency</td>
-            <td>Image</td>
-            <td>Votes</td>
-            <td>Action</td>
+            <td className="rowTd">Name</td>
+            <td className="rowTd">Frequency</td>
+            <td className="rowTd">Image</td>
+            <td className="rowTd">Votes</td>
+            <td className="rowTd">Edit</td>
+            <td className="rowTd">Delete</td>
           </tr>
         </thead>
         <tbody>{actions}</tbody>
