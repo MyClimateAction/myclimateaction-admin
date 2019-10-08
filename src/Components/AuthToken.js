@@ -11,8 +11,8 @@ export default class AuthToken extends Component {
   };
 
   handleSubmit = e => {
-    e.preventDefault();
     this.props.onAccess(this.state.tokenString);
+    e.preventDefault();
   };
 
   render() {

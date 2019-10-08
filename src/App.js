@@ -15,25 +15,55 @@ export default class App extends Component {
     };
   }
 
-  componentDidMount() {}
-
   checkAuth = token => {
+    this.setState({
+      token: token
+    });
     this.fetchAuth();
+  };
 
-    let isValid = token === "MyClimateActionAdmin2019!" ? true : false;
-    this.setState({ auth: isValid });
-    this.fetchData();
-    // process.env.NODE_ENV development | production
-    // localStorage.set('token', token)
-    // localStorage.getItem('token')
+  componentDidMount() {
+    if (localStorage.getItem("auth")) {
+      this.setState({
+        auth: true
+      });
+      this.fetchData();
+    }
+  }
+
+  fetchAuth = () => {
+    return fetch(`${process.env.REACT_APP_API_URL}/auth`, {
+      headers: {
+        authorization: this.state.token
+      }
+    })
+      .then(res => {
+        if (res.ok) {
+          this.setState({
+            auth: true
+          });
+          localStorage.setItem("auth", true);
+          this.fetchData();
+        } else {
+          this.setState({
+            auth: false
+          });
+          localStorage.setItem("auth", false);
+          throw Error(res.statusText);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
   };
 
   fetchData = () => {
     fetch(`${process.env.REACT_APP_API_URL}/actions`)
-      .then(response => response.json())
-      .then(responseData => {
+      .then(res => res.json())
+      .then(res => {
+        console.log("fetching");
         this.setState({
-          actions: responseData.data,
+          actions: res.data,
           loading: false
         });
       })
@@ -42,25 +72,11 @@ export default class App extends Component {
       });
   };
 
-  fetchAuth = () => {
-    return fetch(`${process.env.REACT_APP_API_URL}/auth`, {
-      headers: {
-        authorization: "MyClimateAcAdmin2019!" //from state
-      }
-    })
-      .then(res => {
-        return res.json();
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  };
-
   postAction = () => {
     return fetch(`${process.env.REACT_APP_API_URL}/action`, {
       headers: {
         "Content-type": "application/json",
-        authorization: "MyClimateActionAdmin2019!" //from state
+        authorization: this.state.token //from state
       },
       method: "POST",
       body: JSON.stringify({
@@ -82,10 +98,13 @@ export default class App extends Component {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
-        authorization: "MyClimateActionAdmin2019!" //from state
+        authorization: this.state.token //from state
       }
     })
       .then(res => {
+        if (res.ok) {
+          console.log("DELETE!");
+        }
         return res.json();
       })
       .catch(err => {
@@ -133,6 +152,7 @@ export default class App extends Component {
         actions: prevState.actions.filter(a => a.id !== id)
       };
     });
+    this.deleteAction(id);
   };
 
   createActionObject = (title, imageURL, freq) => {
