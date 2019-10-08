@@ -9,51 +9,54 @@ export default class App extends Component {
     super();
     this.state = {
       actions: [],
-      token: "",
+      token: undefined,
       loading: false,
       auth: false
     };
   }
 
   checkAuth = token => {
-    this.setState({
-      token: token
-    });
-    this.fetchAuth();
+    this.fetchAuth(token);
   };
 
   componentDidMount() {
-    if (localStorage.getItem("auth")) {
-      this.setState({
-        auth: true
-      });
-      this.fetchData();
+    const localStorageToken = localStorage.getItem("token");
+    if (localStorageToken) {
+      this.fetchAuth(localStorageToken);
     }
   }
 
-  fetchAuth = () => {
+  fetchAuth = token => {
     return fetch(`${process.env.REACT_APP_API_URL}/auth`, {
       headers: {
-        authorization: this.state.token
+        authorization: token
       }
     })
       .then(res => {
         if (res.ok) {
           this.setState({
-            auth: true
+            token
           });
-          localStorage.setItem("auth", true);
+          localStorage.setItem("token", token);
           this.fetchData();
         } else {
           this.setState({
-            auth: false
+            token: undefined
           });
-          localStorage.setItem("auth", false);
+
+          alert("Invalid auth token");
+
           throw Error(res.statusText);
         }
       })
       .catch(err => {
-        console.error(err);
+        this.setState({
+          token: undefined
+        });
+
+        alert("Invalid auth token");
+
+        throw Error(err.message);
       });
   };
 
@@ -114,9 +117,11 @@ export default class App extends Component {
 
   // ---------------- HANDLE FUNCTIONS ----------------
   handleLogout = () => {
+    localStorage.removeItem("token");
+
     this.setState({
       actions: [],
-      auth: false
+      token: undefined
     });
   };
 
@@ -172,12 +177,12 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        {!this.state.auth && (
+        {!this.state.token && (
           <div className="Content">
             {<AuthToken onAccess={this.checkAuth} />}
           </div>
         )}
-        {this.state.auth && (
+        {this.state.token && (
           <React.Fragment>
             <TopBar logout={this.handleLogout} />
             <div className="Content">
