@@ -74,24 +74,26 @@ export default class App extends Component {
       });
   };
 
-  postAction = () => {
-    console.log("post Action! ");
+  postAction = data => {
+    console.log("post Action");
     return fetch(`${process.env.REACT_APP_API_URL}/action`, {
       headers: {
         "Content-type": "application/json",
-        authorization: "MyClimateActionAdmin2019!"
+        authorization: this.state.token
       },
       method: "POST",
       body: JSON.stringify({
-        title: "new action",
-        frequency: "daily",
-        picture_url: "http://123.com"
+        title: data.name,
+        frequency: data.frequency,
+        picture_url: data.picture_url
       })
     })
       .then(res => {
+        let resJson = res.json();
+        console.log(resJson);
         return res.json();
       })
-      .then(console.log("pass log"))
+      .then(this.fetchData(this.state.token))
       .catch(err => {
         console.error(err);
       });
@@ -126,12 +128,13 @@ export default class App extends Component {
     });
   };
 
-  handleAddAction = (title, imageURL, freq) => {
+  handleAddAction = data => {
+    this.postAction(data);
     this.setState(prevState => {
       return {
         actions: [
           ...prevState.actions,
-          this.createActionObject(title, imageURL, freq)
+          { frequency: data.frequency, picture_url: data.picture_url }
         ]
       };
     });
@@ -161,17 +164,6 @@ export default class App extends Component {
     this.deleteAction(id);
   };
 
-  createActionObject = (title, imageURL, freq) => {
-    let newAction = {
-      //id: //how to get the id on the server?
-      title: title,
-      picture_url: imageURL,
-      frequency: freq
-      //created_at: how to get the this info server ?
-      //updated_at: how to get the  server ?
-    };
-    return newAction;
-  };
   // ---------------- END HANDLE FUNCTIONS  ----------------
 
   // ---------------- RENDER ----------------
@@ -193,7 +185,7 @@ export default class App extends Component {
               ) : (
                 <Table
                   data={this.state.actions}
-                  addAction={this.postAction}
+                  addAction={this.handleAddAction}
                   modifyAction={this.handleModifyAction}
                   deleteAction={this.handleDeleteAction}
                 />

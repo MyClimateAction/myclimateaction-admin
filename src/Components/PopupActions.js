@@ -20,12 +20,22 @@ class PopupActions extends React.Component {
     });
   };
 
+  handleAddAction = e => {
+    e.preventDefault();
+    this.props.addAction({
+      name: this.state.name,
+      picture_url: this.state.picture_url,
+      frequency: this.state.frequency
+    });
+    this.props.closePopup();
+  };
+
   render() {
     return (
       <div className="popup">
         <button onClick={this.props.closePopup}>close me</button>
         <div className="popup\_inner">
-          <form className="" onSubmit={this.props.addAction}>
+          <form className="" onSubmit={this.handleAddAction}>
             <label className="">Add an Action</label>
             <input
               className=""
@@ -56,7 +66,7 @@ class PopupActions extends React.Component {
               required
             />
             <button className="" type="submit" id="submit">
-              Add action!
+              Add action
             </button>
           </form>
         </div>

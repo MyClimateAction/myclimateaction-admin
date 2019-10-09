@@ -64,12 +64,12 @@ export default class Table extends Component {
       <div>
         {this.returnTableData(this.state.actions)}
         <button onClick={this.togglePopup}>Add an Action</button>
-        {this.state.showPopup ? (
+        {this.state.showPopup && (
           <PopupActions
             closePopup={this.togglePopup}
             addAction={this.props.addAction}
           />
-        ) : null}
+        )}
       </div>
     );
   }
