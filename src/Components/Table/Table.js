@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import Row from "./Row";
+import PopupActions from "../PopupActions";
 import "./Table.css";
 
 export default class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      actions: []
+      actions: [],
+      showPopup: false
     };
   }
 
@@ -51,11 +53,23 @@ export default class Table extends Component {
     );
   };
 
+  togglePopup = () => {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
+  };
+
   render() {
     return (
       <div>
         {this.returnTableData(this.state.actions)}
-        <button>Add an Action</button>
+        <button onClick={this.togglePopup}>Add an Action</button>
+        {this.state.showPopup ? (
+          <PopupActions
+            closePopup={this.togglePopup}
+            addAction={this.props.addAction}
+          />
+        ) : null}
       </div>
     );
   }

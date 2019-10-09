@@ -10,8 +10,7 @@ export default class App extends Component {
     this.state = {
       actions: [],
       token: undefined,
-      loading: false,
-      auth: false
+      loading: false
     };
   }
 
@@ -76,14 +75,15 @@ export default class App extends Component {
   };
 
   postAction = () => {
+    console.log("post Action! ");
     return fetch(`${process.env.REACT_APP_API_URL}/action`, {
       headers: {
         "Content-type": "application/json",
-        authorization: this.state.token //from state
+        authorization: "MyClimateActionAdmin2019!"
       },
       method: "POST",
       body: JSON.stringify({
-        title: "hello new action",
+        title: "new action",
         frequency: "daily",
         picture_url: "http://123.com"
       })
@@ -91,6 +91,7 @@ export default class App extends Component {
       .then(res => {
         return res.json();
       })
+      .then(console.log("pass log"))
       .catch(err => {
         console.error(err);
       });
@@ -192,6 +193,7 @@ export default class App extends Component {
               ) : (
                 <Table
                   data={this.state.actions}
+                  addAction={this.postAction}
                   modifyAction={this.handleModifyAction}
                   deleteAction={this.handleDeleteAction}
                 />

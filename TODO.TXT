@@ -1,3 +1,2 @@
-[] how to edit action?
+[] how to edit action? (too much for 1st version)
 [] how to add action?
-[] Change the auth, use token info from the server
