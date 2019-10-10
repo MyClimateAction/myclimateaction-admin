@@ -88,12 +88,7 @@ export default class App extends Component {
         picture_url: data.picture_url
       })
     })
-      .then(res => {
-        let resJson = res.json();
-        console.log(resJson);
-        return res.json();
-      })
-      .then(this.fetchData(this.state.token))
+      .then(res => res.json())
       .catch(err => {
         console.error(err);
       });
@@ -128,14 +123,12 @@ export default class App extends Component {
     });
   };
 
-  handleAddAction = data => {
-    this.postAction(data);
+  handleAddAction = async data => {
+    const response = await this.postAction(data);
+
     this.setState(prevState => {
       return {
-        actions: [
-          ...prevState.actions,
-          { frequency: data.frequency, picture_url: data.picture_url }
-        ]
+        actions: [response.data, ...prevState.actions]
       };
     });
   };
