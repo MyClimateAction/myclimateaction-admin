@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/myclimateaction-admin/static/css/main.1b2d4935.chunk.css",
-    "main.js": "/myclimateaction-admin/static/js/main.9fef89ec.chunk.js",
-    "main.js.map": "/myclimateaction-admin/static/js/main.9fef89ec.chunk.js.map",
+    "main.js": "/myclimateaction-admin/static/js/main.b8ae2786.chunk.js",
+    "main.js.map": "/myclimateaction-admin/static/js/main.b8ae2786.chunk.js.map",
     "runtime-main.js": "/myclimateaction-admin/static/js/runtime-main.50f32da0.js",
     "runtime-main.js.map": "/myclimateaction-admin/static/js/runtime-main.50f32da0.js.map",
-    "static/js/2.027b2809.chunk.js": "/myclimateaction-admin/static/js/2.027b2809.chunk.js",
-    "static/js/2.027b2809.chunk.js.map": "/myclimateaction-admin/static/js/2.027b2809.chunk.js.map",
+    "static/js/2.2d1d90bf.chunk.js": "/myclimateaction-admin/static/js/2.2d1d90bf.chunk.js",
+    "static/js/2.2d1d90bf.chunk.js.map": "/myclimateaction-admin/static/js/2.2d1d90bf.chunk.js.map",
     "index.html": "/myclimateaction-admin/index.html",
-    "precache-manifest.1754be035150d9335ad4dcb262cdd010.js": "/myclimateaction-admin/precache-manifest.1754be035150d9335ad4dcb262cdd010.js",
+    "precache-manifest.5dba68d4e7dc21b3716563b6b499d432.js": "/myclimateaction-admin/precache-manifest.5dba68d4e7dc21b3716563b6b499d432.js",
     "service-worker.js": "/myclimateaction-admin/service-worker.js",
     "static/css/main.1b2d4935.chunk.css.map": "/myclimateaction-admin/static/css/main.1b2d4935.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.50f32da0.js",
-    "static/js/2.027b2809.chunk.js",
+    "static/js/2.2d1d90bf.chunk.js",
     "static/css/main.1b2d4935.chunk.css",
-    "static/js/main.9fef89ec.chunk.js"
+    "static/js/main.b8ae2786.chunk.js"
   ]
 }
