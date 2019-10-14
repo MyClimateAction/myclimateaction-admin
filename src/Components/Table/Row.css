@@ -5,5 +5,29 @@
   text-align: left;
   padding-left: 8px;
   font-size: 14px;
-  border-bottom: 1px solid #C4C4C4;
+  border-bottom: 1px solid #c4c4c4;
+}
+
+#doneAction {
+  border: none;
+  background: none;
+  width: 80px;
+  color: yellow;
+  text-align: left;
+}
+
+#editAction {
+  border: none;
+  background: none;
+  width: 80px;
+  color: green;
+  text-align: left;
+}
+
+#deleteAction {
+  border: none;
+  background: none;
+  width: 40px;
+  color: red;
+  text-align: left;
 }

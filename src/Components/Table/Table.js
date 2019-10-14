@@ -40,12 +40,24 @@ export default class Table extends Component {
       <table className="Actions-List">
         <thead>
           <tr className="Actions-tr">
-            <td className="rowTd">Name</td>
-            <td className="rowTd">Frequency</td>
-            <td className="rowTd">Image</td>
-            <td className="rowTd">Votes</td>
-            <td className="rowTd">Edit</td>
-            <td className="rowTd">Delete</td>
+            <td id="Name" className="rowTd">
+              Name
+            </td>
+            <td id="Frequency" className="rowTd">
+              Frequency
+            </td>
+            <td id="Image url" className="rowTd">
+              Image url
+            </td>
+            <td id="Votes" className="rowTd">
+              Votes
+            </td>
+            <td id="Edit" className="rowTd">
+              Edit
+            </td>
+            <td id="Delete" className="rowTd">
+              Delete
+            </td>
           </tr>
         </thead>
         <tbody>{actions}</tbody>
@@ -63,7 +75,9 @@ export default class Table extends Component {
     return (
       <div>
         {this.returnTableData(this.state.actions)}
-        <button onClick={this.togglePopup}>Add an Action</button>
+        <button id="addAction" onClick={this.togglePopup}>
+          Add an Action
+        </button>
         {this.state.showPopup && (
           <PopupActions
             closePopup={this.togglePopup}

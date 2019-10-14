@@ -25,10 +25,11 @@ input {
   outline: 0;
   width: 330px;
   border-width: 0 0 2px;
-  border-color: lightgray
+  border-color: lightgray;
 }
 
-button {
+#submit {
+  border: none;
   width: 94px;
   height: 36px;
   background: #009688;

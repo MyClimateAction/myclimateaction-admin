@@ -46,6 +46,18 @@ export default class Row extends Component {
     });
   };
 
+  adapStringUrl = stringUrl => {
+    if (stringUrl.length > 50) {
+      const adapUrlString = `${stringUrl.slice(0, 30)}...${stringUrl.slice(
+        stringUrl.length - 10,
+        stringUrl.length
+      )}`;
+      return adapUrlString;
+    } else {
+      return stringUrl;
+    }
+  };
+
   render() {
     return (
       <tr key={this.props.id}>
@@ -100,13 +112,20 @@ export default class Row extends Component {
           <React.Fragment>
             <td className="rowTd">{this.state.name}</td>
             <td className="rowTd">{this.state.frequency}</td>
-            <td className="rowTd">{this.state.picture_url}</td>
+            <td className="rowTd">
+              {this.adapStringUrl(this.state.picture_url)}
+            </td>
             <td className="rowTd">{this.state.votes}</td>
             <td className="rowTd">
-              <button onClick={this.handleEdit}>Edit</button>
+              <button id="editAction" onClick={this.handleEdit}>
+                Edit
+              </button>
             </td>
             <td className="rowTd">
-              <button onClick={() => this.props.deleteAction(this.props.id)}>
+              <button
+                id="deleteAction"
+                onClick={() => this.props.deleteAction(this.props.id)}
+              >
                 X
               </button>
             </td>
