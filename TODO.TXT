@@ -1,2 +1,5 @@
-[] how to edit action? (too much for 1st version)
-[] how to add action?
+[] add vote fetch
+[] add vote table
+[] clean fetch funtion, cf async await
+[] fix issue "no data" when loading
+
