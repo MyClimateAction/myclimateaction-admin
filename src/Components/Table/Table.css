@@ -5,4 +5,9 @@
 .Actions-tr td {
   color: black;
   background-color: white;
+  border-bottom: 1px solid #C4C4C4;
+}
+
+table{
+  margin: 2em;
 }
