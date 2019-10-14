@@ -32,13 +32,17 @@ class PopupActions extends React.Component {
 
   render() {
     return (
-      <div className="popup">
-        <button onClick={this.props.closePopup}>close me</button>
-        <div className="popup\_inner">
-          <form className="" onSubmit={this.handleAddAction}>
-            <label className="">Add an Action</label>
+      <div class="overlay">
+        <div className="popup">
+          <button id="close" onClick={this.props.closePopup}>
+            &times;
+          </button>
+          <form className="content" onSubmit={this.handleAddAction}>
+            <label id="labelAdd" className="child">
+              Add an Action
+            </label>
             <input
-              className=""
+              className="child"
               name="name"
               value={this.state.name}
               onChange={this.handleUpdateValue}
@@ -47,6 +51,7 @@ class PopupActions extends React.Component {
               required
             />
             <select
+              className="child"
               name="frequency"
               value={this.state.frequency}
               onChange={this.handleUpdateValue}
@@ -57,7 +62,7 @@ class PopupActions extends React.Component {
               required
             </select>
             <input
-              className=""
+              className="child"
               name="picture_url"
               value={this.state.picture_url}
               onChange={this.handleUpdateValue}
@@ -65,7 +70,7 @@ class PopupActions extends React.Component {
               placeholder="Enter an image url"
               required
             />
-            <button className="" type="submit" id="submit">
+            <button className="child" type="submit" id="submit">
               Add action
             </button>
           </form>
