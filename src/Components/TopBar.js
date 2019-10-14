@@ -8,7 +8,7 @@ export default class TopBar extends Component {
         <h2 className="TopBar-item">actions</h2>
         <h1 className="TopBar-item">MYCLIMATEACTION</h1>
         <button className="TopBar-item" onClick={this.props.logout}>
-          logout
+          Logout
         </button>
       </header>
     );
