@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "60002b5cbac1966b743b99ef68842dda",
+    "revision": "9f72621a90fc51733ec61c1829c2efc4",
     "url": "/myclimateaction-admin/index.html"
   },
   {
-    "revision": "444fd9a8fd790ee373d4",
-    "url": "/myclimateaction-admin/static/css/main.cdfef2f1.chunk.css"
+    "revision": "a8976a3283af78b1cb72",
+    "url": "/myclimateaction-admin/static/css/main.aa18ed65.chunk.css"
   },
   {
     "revision": "e95f744a915cbe024853",
     "url": "/myclimateaction-admin/static/js/2.2d1d90bf.chunk.js"
   },
   {
-    "revision": "444fd9a8fd790ee373d4",
-    "url": "/myclimateaction-admin/static/js/main.b8ae2786.chunk.js"
+    "revision": "a8976a3283af78b1cb72",
+    "url": "/myclimateaction-admin/static/js/main.252872b5.chunk.js"
   },
   {
     "revision": "74b3198bc06ed02fe52a",
